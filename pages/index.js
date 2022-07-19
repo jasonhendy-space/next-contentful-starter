@@ -2,44 +2,37 @@ import Head from 'next/head'
 
 import { fetchEntries } from '@utils/contentfulPosts'
 
-import Header from '@components/Header'
-import Footer from '@components/Footer'
 import Post from '@components/Post'
 
 export default function Home({ posts }) {
   return (
     <div className="container">
       <Head>
-        <title>Next + Contentful Starter</title>
+        <title>ReAssure - Help Center Article</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <Header />
         <div className="posts">
-          {posts.map((p) => {
-            return <Post key={p.date} date={p.date} image={p.image.fields} title={p.title} body={p.body} />
+          {posts.map(({date, image, title, body}) => {
+            return <Post key={date} date={date} image={image.fields} title={title} body={body} />
           })}
         </div>
       </main>
-
-      <Footer />
 
       <style jsx>{`
         .container {
           height: 100vh;
           display: flex;
           flex-direction: column;
-          justify-content: center;
           align-items: center;
         }
 
         main {
-          padding: 5rem 0;
+          padding: 0 0 5rem 0;
           flex: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
           align-items: center;
         }
 
@@ -67,13 +60,9 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   const res = await fetchEntries()
-  console.log('res', res)
-  const posts = await res.map((p) => {
-    console.log('p.fields', p.fields)
-    return p.fields
+  const posts = await res.map((post) => {
+    return post.fields
   })
-
-  console.log('posts', posts)
 
   return {
     props: {

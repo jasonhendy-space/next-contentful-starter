@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "push": "GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_space' git push origin master"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.12.1",

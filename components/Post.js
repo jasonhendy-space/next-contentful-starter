@@ -17,7 +17,7 @@ function Post({ date, image, title, body }) {
         .post {
           position: relative;
           margin: 10px;
-          width: 600px;
+          width: 800px;
           color: white;
           cursor: pointer;
         }
@@ -54,10 +54,11 @@ function Post({ date, image, title, body }) {
           font-weight: 400;
         }
         img {
-          max-width: 600px;
+          max-width: 800px;
         }
         .post-body {
           color: black;
+          margin-top: 30px;
         }
       `}</style>
     </div>
