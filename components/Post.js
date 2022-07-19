@@ -1,5 +1,7 @@
-function Post({ date, image, title }) {
-  let { file, description } = image
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+
+function Post({ date, image, title, body }) {
+  let { file, description } = image;
 
   return (
     <div className="post">
@@ -8,13 +10,14 @@ function Post({ date, image, title }) {
       <div className="text">
         <h2>{title}</h2>
         <h3>{date.substring(0, 10)}</h3>
+        <div className="post-body">{documentToReactComponents(body)}</div>
       </div>
 
       <style jsx>{`
         .post {
           position: relative;
           margin: 10px;
-          width: 300px;
+          width: 600px;
           color: white;
           cursor: pointer;
         }
@@ -23,7 +26,6 @@ function Post({ date, image, title }) {
           top: 0;
           padding: 10px;
           box-sizing: border-box;
-          background: linear-gradient(0deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 100%);
           height: 100px;
           opacity: 0;
           transition: opacity 0.5s;
@@ -38,7 +40,6 @@ function Post({ date, image, title }) {
           box-sizing: border-box;
           width: 100%;
           height: 70px;
-          background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0) 100%);
         }
         h2,
         h3 {
@@ -53,7 +54,10 @@ function Post({ date, image, title }) {
           font-weight: 400;
         }
         img {
-          max-width: 300px;
+          max-width: 600px;
+        }
+        .post-body {
+          color: black;
         }
       `}</style>
     </div>
